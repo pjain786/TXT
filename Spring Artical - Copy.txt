@@ -1,0 +1,169 @@
+Spring Framework
+
+1)Leightweight
+2)Louse Coupled
+3)Easy to develop JAVA EE Application
+4)Easy to test
+5)Powerful Abstration
+6)Declarative Support like caching,transaction,validation,formating
+
+Spring Core Container
+It contains core,beans, context and expression language module
+
+Core and beans:
+This module provides IOC and dependency injection feature.
+
+Context:
+This Module Support Internationalization(I18N),EJB,JMS,Basic Remoting.
+
+Expression Language:
+It is an extension to the EL, It provides supports to setting and getting property values,method invocation, accessing collections 
+and index, naming variables,logical and airthmetic operator, retrival of object by name.
+
+
+Example:
+
+1) Create Simple Java Class
+
+package com.test;
+
+public class Student{
+
+ public String name;
+
+ public void setName(String name){
+   this.name = name;
+ }
+ public String getName(){
+  return name;
+ }
+
+ piblic void displayInfo(){
+  System.out.println("Hello, "+name);
+ }
+  
+}
+
+2) Create Xml File:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+   <bean id="student" class="com.test.Student">
+     <property name="name" value="Piyush"/>
+   </bean>
+ 
+</beans>   
+
+
+3) Create Test Class:
+
+package com.test;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+public class TestCase{
+ 
+ public static void main(String ...){
+   Resource r = new ClassPathResource("applicationContext.xml");
+   BeanFactory factory = new XmlBeanFactory(r);
+   Student st =(Strudent)factory.getBean("student");
+   st.displayInfo();
+ }
+}
+
+Required jar :
+1)org.springframework.core-3.0.1-RELEASE-A
+2)org.springframework.beans-3.0.1-RELEASE-A
+
+
+
+IOC(Inversion Of Control) Container:
+
+IOC Conatiner is responsible for instantiate,configure and assemble the object. The IOC Container gets information from 
+xml files and work accordingly. The main task perform by IOC Container are:
+1)To instatiate the application class.
+2)To configure the Object.
+3)To assemble the dependencies between objects.
+
+Advantage:
+1) Make the code loosely coupled. so that no need to modify the code if our logic moved to new enviromnment.
+2) Make the code easy to test.
+
+Diffrence between BeanFactory and ApplicationContext.
+Both Interface acts as a IOC Container, The ApplicationContext interface is built on top of BeanFactory interface
+AppliationContext add some extra functionality such as Simple integration with AOP, Message Resource Handling (for I18N),
+event propogation,Application layer specific context ie(WebApplication Context) so it is better to use ApplicationContext than BeanFactory.
+
+Using Bean Factory : 
+
+XmlBeanFacory is the implementation class of BeanFactory interface. To use the BeanFactory,We need to create the instance of XmlBeanFacory class as given below
+
+Resource resource = new ClassPathResource("appliactionContext.xml");
+BeanFacory bf = new XmlBeanFactory(resource);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
